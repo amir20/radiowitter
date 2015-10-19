@@ -16,6 +16,8 @@
 !/log/.keep
 /tmp
 
+public/assets/
+
 # Bower packages
 bower_components
 node_modules
