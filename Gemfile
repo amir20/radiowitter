@@ -15,7 +15,7 @@ gem 'twitter'
 # Assets
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'react-rails', '~> 1.3.0'
-gem 'bower-rails', '~> 0.10.0'
+gem 'bower'
 gem 'sprockets-es6'
 
 group :development, :test do
