@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tweets, only: [:index]
+  get 'twitter/search', to: 'tweets#search'
   resources :player, only: [:index]
 
   root 'player#index'

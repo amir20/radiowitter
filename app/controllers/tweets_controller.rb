@@ -4,7 +4,7 @@ class TweetsController < ApplicationController
     config.consumer_secret     = ENV['twitter_consumer_secret']
   end
 
-  def index
+  def search
     render json: TWITTER_CLIENT.user_timeline('bpm_playlist')
   end
 end

@@ -5,7 +5,7 @@ class Twitter {
 
     nextTweet() {
         if (this.quque.isEmpty()) {
-            return Promise.resolve($.get("/tweets.json"))
+            return Promise.resolve($.get("/twitter/search.json"))
                 .then(tweets => {
                     this.quque = Immutable.List(tweets);
                     return this.quque.first();
