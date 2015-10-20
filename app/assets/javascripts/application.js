@@ -15,5 +15,5 @@
 //= require react_ujs
 //= require components
 //= require youtube-iframe-api
-//= require youtube_auth
+//= require youtube_auth.js.erb
 //= require_tree .
