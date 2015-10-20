@@ -1,4 +1,6 @@
 .container-fluid
   .row
     .col-sm-8.col-md-9.main
-    .col-sm-4.col-md-3.sidebar= react_component('TrackList', {}, prerender: true)
+      #player
+    .col-sm-4.col-md-3.sidebar
+      = react_component('TrackList', {}, prerender: true)

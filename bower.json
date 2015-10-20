@@ -21,6 +21,7 @@
     "PubSub": "pubsub#~1.0.0",
     "jquery": "~2.1.4",
     "immutable": "~3.7.5",
-    "es6-promise": "~3.0.2"
+    "es6-promise": "~3.0.2",
+    "youtube-iframe-api": "~0.0.1"
   }
 }
