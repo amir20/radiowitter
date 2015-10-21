@@ -3,7 +3,7 @@ ytApi = Promise.resolve(youtubeApiDeferred.promise());
 
 function googleApiClientReady() {
     gapi.client.load('youtube', 'v3').then(function () {
-        gapi.client.setApiKey("<%= Figaro.env.youtube_api_key%>");
+        gapi.client.setApiKey("<%= Figaro.env.youtube_api_key %>");
         youtubeApiDeferred.resolve(gapi.client.youtube);
     });
 }

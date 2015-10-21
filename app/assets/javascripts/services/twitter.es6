@@ -1,20 +1,28 @@
 class Twitter {
     constructor() {
-        this.quque = Immutable.List();
+        this._mostRecent = null;
+        this._tweets = Immutable.List.of();
     }
 
     nextTweet() {
-        if (this.quque.isEmpty()) {
-            return Promise.resolve($.get("/twitter/search.json"))
-                .then(tweets => {
-                    this.quque = Immutable.List(tweets);
-                    return this.quque.first();
-                });
+        if (!this._tweets.isEmpty()) {
+            this._mostRecent = this._tweets.last();
+            this._tweets = this._tweets.pop();
+            return Promise.resolve(this._mostRecent);
         } else {
-            var first = this.quque.first();
-            this.quque = this.quque.pop();
-            return Promise.resolve(first);
+            return Promise.resolve($.get("/twitter/search.json", this._params()))
+                .then((tweets) => {
+                    this._tweets = Immutable.List(tweets);
+                    this._mostRecent = this._tweets.last();
+                    this._tweets = this._tweets.pop();
+                    return this._mostRecent;
+                }
+            );
         }
+
     }
 
+    _params() {
+        return this._mostRecent == null ? {count: 1} : {last_id: this._mostRecent.id};
+    }
 }
