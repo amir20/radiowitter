@@ -1,1 +1,1 @@
-Figaro.require_keys('secret_key_base', 'twitter_consumer_key', 'twitter_consumer_secret', 'youtube_api_key')
+Figaro.require_keys('secret_key_base', 'twitter_consumer_key', 'twitter_consumer_secret')
