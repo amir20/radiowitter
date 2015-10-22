@@ -2,10 +2,10 @@ class Youtube {
     constructor() {
     }
 
-    findFirstMatch(q) {
+    findFirstMatch(tweet) {
         return ytApi.then((api) => {
             return api.search.list({
-                q: this._filter(q),
+                q: this._filter(tweet.text),
                 part: 'snippet'
             }).then((response) => {
                 if (response.result.items.length > 0) {
