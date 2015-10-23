@@ -8,8 +8,12 @@ class PlayerPanel extends React.Component {
     }
 
     componentDidMount() {
-        this._player.setEndedCallback(this.playNextMatch.bind(this));
         this.playNextMatch();
+        PubSub.subscribe('video.state', data => {
+            if(data == 'ENDED') {
+                this.playNextMatch();
+            }
+        });
     }
 
     playNextMatch() {
@@ -17,10 +21,12 @@ class PlayerPanel extends React.Component {
             this.setState({history: this.state.history.unshift(this.state.nowPlaying)});
         }
         this._twitter.nextTweet().then(tweet => {
-                this._youtube.findFirstMatch(tweet).then((video) => {
-                    this._player.playVideo(video.id.videoId);
-                    this.setState({nowPlaying: {tweet: tweet, video: video}});
-                });
+                if(tweet) {
+                    this._youtube.findFirstMatch(tweet).then(video => {
+                        this._player.playVideo(video.id.videoId);
+                        this.setState({nowPlaying: {tweet: tweet, video: video}});
+                    });
+                }
             }
         )
     }
@@ -28,6 +34,7 @@ class PlayerPanel extends React.Component {
     render() {
         return (
             <div>
+                <Controls onNext={this.playNextMatch.bind(this)} queue={this._twitter.queuedTweets()} player={this._player}/>
                 <NowPlaying data={this.state.nowPlaying}/>
                 <History list={this.state.history}/>
             </div>

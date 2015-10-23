@@ -11,7 +11,7 @@ class Twitter {
             return Promise.resolve(this._mostRecent);
         } else {
             return Promise.resolve($.get("/twitter/search.json", this._params()))
-                .then((tweets) => {
+                .then(tweets => {
                     this._tweets = Immutable.List(tweets);
                     this._mostRecent = this._tweets.last();
                     this._tweets = this._tweets.pop();
@@ -19,10 +19,17 @@ class Twitter {
                 }
             );
         }
+    }
 
+    mostRecent() {
+        return this._mostRecent;
+    }
+
+    queuedTweets() {
+        return this._tweets;
     }
 
     _params() {
-        return this._mostRecent == null ? {count: 1} : {last_id: this._mostRecent.id};
+        return this._mostRecent == null ? {count: 1, screen_name: 'bpm_playlist'} : {since_id: this._mostRecent.id, screen_name: 'bpm_playlist'};
     }
 }

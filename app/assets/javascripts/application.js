@@ -15,5 +15,6 @@
 //= require react_ujs
 //= require components
 //= require youtube-iframe-api
-//= require youtube_auth.js.erb
+//= require youtube_auth
+//= require react-rails-hot-loader
 //= require_tree .

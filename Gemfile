@@ -30,5 +30,6 @@ end
 gem 'rails_12factor', group: :production
 
 gem 'puma'
+gem 'react-rails-hot-loader'
 gem 'figaro'
 

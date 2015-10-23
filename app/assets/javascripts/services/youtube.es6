@@ -3,11 +3,11 @@ class Youtube {
     }
 
     findFirstMatch(tweet) {
-        return ytApi.then((api) => {
+        return ytApi.then(api => {
             return api.search.list({
                 q: this._filter(tweet.text),
                 part: 'snippet'
-            }).then((response) => {
+            }).then(response => {
                 if (response.result.items.length > 0) {
                     return response.result.items[0];
                 } else {
