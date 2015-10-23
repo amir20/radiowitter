@@ -17,13 +17,15 @@ class PlayerPanel extends React.Component {
     }
 
     playNextMatch() {
-        if (this.state.nowPlaying != null) {
-            this.setState({history: this.state.history.unshift(this.state.nowPlaying)});
-        }
+
         this._twitter.nextTweet().then(tweet => {
                 if(tweet) {
                     this._youtube.findFirstMatch(tweet).then(video => {
                         this._player.playVideo(video.id.videoId);
+
+                        if (this.state.nowPlaying != null) {
+                            this.setState({history: this.state.history.unshift(this.state.nowPlaying)});
+                        }
                         this.setState({nowPlaying: {tweet: tweet, video: video}});
                     });
                 }
