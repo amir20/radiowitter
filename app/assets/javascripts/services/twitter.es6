@@ -30,6 +30,6 @@ class Twitter {
     }
 
     _params() {
-        return this._mostRecent == null ? {count: 1, screen_name: 'bpm_playlist'} : {since_id: this._mostRecent.id, screen_name: 'bpm_playlist'};
+        return this._mostRecent == null ? {count: 1, screen_name: 'bpm_playlist'} : {since_id: this._mostRecent.id_str, screen_name: 'bpm_playlist'};
     }
 }

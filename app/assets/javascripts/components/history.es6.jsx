@@ -15,7 +15,7 @@ class History extends React.Component {
                     {
                         this.props.list.map(function (item) {
                             return (
-                                <li className="media" key={item.tweet.id}>
+                                <li className="media" key={item.tweet.id_str}>
                                     <div className="media-left">
                                         <img className="media-object thumbnail"
                                              src={item.video.snippet.thumbnails.default.url}/>
