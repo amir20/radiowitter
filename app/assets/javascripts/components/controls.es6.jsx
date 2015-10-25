@@ -25,7 +25,7 @@ class Controls extends React.Component {
                     {mainButton}
                 </li>
                 <li>
-                    <a className="glyphicon glyphicon-forward" onClick={this.props.onNext}></a>
+                    { this.props.queue.size > 0 ? <a className="glyphicon glyphicon-forward" onClick={this.props.onNext}></a> : '' }
                 </li>
             </ul>
         )
