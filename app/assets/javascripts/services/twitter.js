@@ -1,4 +1,7 @@
-class Twitter {
+import $ from 'jquery'
+import Immutable from 'immutable';
+
+export default class Twitter {
     constructor() {
         this._mostRecent = null;
         this._tweets = Immutable.List.of();
@@ -21,15 +24,14 @@ class Twitter {
         }
     }
 
-    mostRecent() {
-        return this._mostRecent;
-    }
-
     queuedTweets() {
         return this._tweets;
     }
 
     _params() {
-        return this._mostRecent == null ? {count: 1, screen_name: 'bpm_playlist'} : {since_id: this._mostRecent.id_str, screen_name: 'bpm_playlist'};
+        return this._mostRecent == null ? {count: 1, screen_name: 'bpm_playlist'} : {
+            since_id: this._mostRecent.id_str,
+            screen_name: 'bpm_playlist'
+        };
     }
 }

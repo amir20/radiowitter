@@ -10,11 +10,8 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
 //= require react
 //= require react_ujs
-//= require components
-//= require youtube-iframe-api
-//= require youtube_auth
-//= require react-rails-hot-loader
-//= require_tree .
+
+
+require('./components');
