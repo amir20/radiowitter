@@ -7,7 +7,7 @@ export default class History extends Component {
 
     render() {
         if (this.props.list.isEmpty()) {
-            return false;
+            return <div className="history"></div>;
         }
         return (
             <div className="history">
