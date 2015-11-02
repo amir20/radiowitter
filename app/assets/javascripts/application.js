@@ -14,4 +14,4 @@
 //= require react_ujs
 
 
-require('./components');
+require('./components.es6');
