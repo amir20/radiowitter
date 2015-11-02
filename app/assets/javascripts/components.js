@@ -1,6 +1,4 @@
-//= require_tree ./components
-
-import PlayerPanel from './components/player_panel.jsx';
+var PlayerPanel = require('./components/player_panel.jsx').default;
 
 window.PlayerPanel = PlayerPanel;
 

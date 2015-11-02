@@ -17,7 +17,6 @@
     "react": "^0.14.1",
     "react-addons-test-utils": "^0.14.1",
     "react-dom": "^0.14.1",
-    "react-tools": "^0.13.3",
     "youtube-iframe-player": "^1.0.1"
   },
   "scripts": {
