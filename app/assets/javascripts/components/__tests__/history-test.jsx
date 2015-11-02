@@ -1,11 +1,9 @@
-jest.dontMock('../history');
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 import Immutable from 'immutable'
 
+jest.dontMock('../history');
 const History = require('../history');
 
 describe('History', () => {
