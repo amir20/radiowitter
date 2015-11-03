@@ -15,8 +15,6 @@ gem 'twitter'
 # Assets
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'react-rails'
-gem 'browserify-rails'
-gem 'sprockets-es6', require: 'sprockets/es6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

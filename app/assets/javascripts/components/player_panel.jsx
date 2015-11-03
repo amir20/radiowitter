@@ -29,7 +29,6 @@ export default class PlayerPanel extends Component {
     }
 
     playNextMatch() {
-
         this._twitter.nextTweet().then(tweet => {
                 if (tweet) {
                     this._youtube.findFirstMatch(tweet).then(video => {
