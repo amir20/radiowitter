@@ -1,11 +1,14 @@
-class Controls extends React.Component {
+import React, { Component } from 'react';
+import PubSub from 'pubsub-js';
+
+export default class Controls extends Component {
     constructor(props) {
         super(props);
         this.state = {playing: false};
     }
 
     componentDidMount() {
-        PubSub.subscribe('video.state', data => {
+        PubSub.subscribe('video.state', (msg, data) => {
             this.setState({playing: data == 'PLAYING'});
         });
     }
@@ -25,7 +28,8 @@ class Controls extends React.Component {
                     {mainButton}
                 </li>
                 <li>
-                    { this.props.queue.size > 0 ? <a className="glyphicon glyphicon-forward" onClick={this.props.onNext}></a> : '' }
+                    { this.props.queue.size > 0 ?
+                        <a className="glyphicon glyphicon-forward" onClick={this.props.onNext}></a> : '' }
                 </li>
             </ul>
         )

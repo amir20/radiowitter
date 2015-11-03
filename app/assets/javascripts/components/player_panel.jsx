@@ -1,4 +1,16 @@
-class PlayerPanel extends React.Component {
+import React, { Component } from 'react';
+import PubSub from 'pubsub-js';
+import Immutable from 'immutable';
+
+import Twitter from '../services/twitter';
+import Youtube from '../services/youtube';
+import Player from '../services/player';
+import Controls from './controls.jsx'
+import NowPlaying from './now_playing.jsx'
+import History from './history.jsx'
+
+
+export default class PlayerPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {history: Immutable.List(), nowPlaying: null};
@@ -9,17 +21,16 @@ class PlayerPanel extends React.Component {
 
     componentDidMount() {
         this.playNextMatch();
-        PubSub.subscribe('video.state', data => {
-            if(data == 'ENDED') {
+        PubSub.subscribe('video.state', (msg, data) => {
+            if (data == 'ENDED') {
                 this.playNextMatch();
             }
         });
     }
 
     playNextMatch() {
-
         this._twitter.nextTweet().then(tweet => {
-                if(tweet) {
+                if (tweet) {
                     this._youtube.findFirstMatch(tweet).then(video => {
                         this._player.playVideo(video.id.videoId);
 
@@ -36,7 +47,9 @@ class PlayerPanel extends React.Component {
     render() {
         return (
             <div>
-                <Controls onNext={this.playNextMatch.bind(this)} queue={this._twitter.queuedTweets()} player={this._player}/>
+                <Controls onNext={this.playNextMatch.bind(this)}
+                          queue={this._twitter.queuedTweets()}
+                          player={this._player}/>
                 <NowPlaying data={this.state.nowPlaying}/>
                 <History list={this.state.history}/>
             </div>

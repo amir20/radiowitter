@@ -16,6 +16,7 @@
 !/log/.keep
 /tmp
 
+/app/assets/javascripts/components.*
 public/assets/
 
 # Bower packages
