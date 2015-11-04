@@ -28,6 +28,7 @@ end
 gem 'rails_12factor', group: :production
 
 gem 'puma'
+gem 'newrelic_rpm'
 gem 'react-rails-hot-loader'
 gem 'figaro'
 

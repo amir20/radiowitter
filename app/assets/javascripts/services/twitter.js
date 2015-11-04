@@ -1,10 +1,11 @@
 import $ from 'jquery'
-import Immutable from 'immutable';
+import Immutable from 'immutable'
 
 export default class Twitter {
     constructor() {
         this._mostRecent = null;
         this._tweets = Immutable.List.of();
+        this._handle = 'bpm_playlist';
     }
 
     nextTweet() {
@@ -15,13 +16,23 @@ export default class Twitter {
         } else {
             return Promise.resolve($.get("/twitter/search.json", this._params()))
                 .then(tweets => {
-                    this._tweets = Immutable.List(tweets);
-                    this._mostRecent = this._tweets.last();
-                    this._tweets = this._tweets.pop();
-                    return this._mostRecent;
-                }
-            );
+                        this._tweets = Immutable.List(tweets);
+                        this._mostRecent = this._tweets.last();
+                        this._tweets = this._tweets.pop();
+                        return this._mostRecent;
+                    }
+                );
         }
+    }
+
+    nextRandomTweet() {
+        return Promise.resolve($.get("/twitter/search.json", {count: 25, screen_name: this._handle}))
+            .then(tweets => tweets[Math.floor(Math.random() * tweets.length)]);
+
+    }
+
+    mostRecent() {
+        return this._mostRecent;
     }
 
     queuedTweets() {
@@ -29,7 +40,7 @@ export default class Twitter {
     }
 
     _params() {
-        return this._mostRecent == null ? {count: 1, screen_name: 'bpm_playlist'} : {
+        return this._mostRecent == null ? {count: 1, screen_name: this._handle} : {
             since_id: this._mostRecent.id_str,
             screen_name: 'bpm_playlist'
         };

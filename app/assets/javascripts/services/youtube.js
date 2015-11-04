@@ -1,14 +1,14 @@
-import $ from 'jquery';
+import $ from 'jquery'
 
-var ytApi = null;
+let ytApi = null;
 
 // Do this weird hackery when compiling on server
 if($.Deferred) {
-    var youtubeApiDeferred = $.Deferred();
+    let youtubeApiDeferred = $.Deferred();
     ytApi = Promise.resolve(youtubeApiDeferred.promise());
 
     function googleApiClientReady() {
-        gapi.client.load('youtube', 'v3').then(function () {
+        gapi.client.load('youtube', 'v3').then(() => {
             gapi.client.setApiKey("AIzaSyBG6og9E2xaFIqNlxP3yw-d0t7JOgtGpyo");
             youtubeApiDeferred.resolve(gapi.client.youtube);
         });
@@ -38,9 +38,7 @@ export default class Youtube {
     }
 
     _filter(s) {
-        [/#[^ ]+/g, /@[^ ]+/g, /-/g, /playing/g].forEach((r) => {
-            s = s.replace(r, '');
-        });
+        [/#[^ ]+/g, /@[^ ]+/g, /-/g, /playing/g].forEach(r => s = s.replace(r, ''));
         return s;
     }
 }

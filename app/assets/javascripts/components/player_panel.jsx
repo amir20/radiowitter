@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import PubSub from 'pubsub-js';
-import Immutable from 'immutable';
+import React, { Component } from 'react'
+import PubSub from 'pubsub-js'
+import Immutable from 'immutable'
 
-import Twitter from '../services/twitter';
-import Youtube from '../services/youtube';
-import Player from '../services/player';
+import Twitter from '../services/twitter'
+import Youtube from '../services/youtube'
+import Player from '../services/player'
 import Controls from './controls.jsx'
 import NowPlaying from './now_playing.jsx'
 import History from './history.jsx'
@@ -32,17 +32,40 @@ export default class PlayerPanel extends Component {
         this._twitter.nextTweet().then(tweet => {
                 if (tweet) {
                     this._youtube.findFirstMatch(tweet).then(video => {
-                        this._player.playVideo(video.id.videoId);
-
-                        if (this.state.nowPlaying != null) {
-                            this.setState({history: this.state.history.unshift(this.state.nowPlaying)});
+                        if (video != null) {
+                            this.playVideo(tweet, video);
+                        } else {
+                            // when no matches found
+                            this.playRandomTweet();
                         }
-                        this.setState({nowPlaying: {tweet: tweet, video: video}});
                     });
+                } else {
+                    // play random video when no tweet found
+                    this.playRandomTweet();
                 }
             }
         )
     }
+
+
+    playRandomTweet() {
+        this._twitter.nextRandomTweet().then(tweet => {
+                this._youtube.findFirstMatch(tweet).then(video => {
+                    this._player.playVideo(video.id.videoId);
+                    this.playVideo(tweet, video);
+                });
+            }
+        )
+    }
+
+    playVideo(tweet, video) {
+        this._player.playVideo(video.id.videoId);
+        if (this.state.nowPlaying != null) {
+            this.setState({history: this.state.history.unshift(this.state.nowPlaying)});
+        }
+        this.setState({nowPlaying: {tweet: tweet, video: video}});
+    }
+
 
     render() {
         return (

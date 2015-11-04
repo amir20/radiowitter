@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PubSub from 'pubsub-js';
+import React, { Component } from 'react'
+import PubSub from 'pubsub-js'
 
 export default class Controls extends Component {
     constructor(props) {
@@ -14,7 +14,7 @@ export default class Controls extends Component {
     }
 
     render() {
-        var mainButton = null;
+        let mainButton = null;
 
         if (this.state.playing) {
             mainButton = <a className="glyphicon glyphicon-pause" onClick={() => this.props.player.pause()}></a>;

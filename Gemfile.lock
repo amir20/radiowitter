@@ -110,6 +110,7 @@ GEM
     multi_json (1.11.2)
     multipart-post (2.0.0)
     naught (1.1.0)
+    newrelic_rpm (3.14.0.305)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     puma (2.14.0)
@@ -211,6 +212,7 @@ DEPENDENCIES
   figaro
   haml-rails (~> 0.9)
   jbuilder (~> 2.0)
+  newrelic_rpm
   puma
   rails (= 4.2.4)
   rails_12factor
