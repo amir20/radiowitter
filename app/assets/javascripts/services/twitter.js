@@ -17,9 +17,14 @@ export default class Twitter {
             return Promise.resolve($.get("/twitter/search.json", this._params()))
                 .then(tweets => {
                         this._tweets = Immutable.List(tweets);
-                        this._mostRecent = this._tweets.last();
-                        this._tweets = this._tweets.pop();
-                        return this._mostRecent;
+                        let nextTweet = this._tweets.last();
+
+                        if (nextTweet !== undefined) {
+                            this._tweets = this._tweets.pop();
+                            this._mostRecent = nextTweet;
+                        }
+                    
+                        return nextTweet;
                     }
                 );
         }
