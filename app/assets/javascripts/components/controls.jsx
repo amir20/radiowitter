@@ -28,8 +28,7 @@ export default class Controls extends Component {
                     {mainButton}
                 </li>
                 <li>
-                    { this.props.queue.size > 0 ?
-                        <a className="glyphicon glyphicon-forward" onClick={this.props.onNext}></a> : '' }
+                    <a className="glyphicon glyphicon-forward" onClick={this.props.onNext}></a>
                 </li>
             </ul>
         )

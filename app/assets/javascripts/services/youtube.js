@@ -3,7 +3,7 @@ import $ from 'jquery'
 let ytApi = null;
 
 // Do this weird hackery when compiling on server
-if($.Deferred) {
+if ($.Deferred) {
     let youtubeApiDeferred = $.Deferred();
     ytApi = Promise.resolve(youtubeApiDeferred.promise());
 
@@ -25,7 +25,7 @@ export default class Youtube {
     findFirstMatch(tweet) {
         return ytApi.then(api => {
             return api.search.list({
-                q: this._filter(tweet.text),
+                q: this._filter(tweet),
                 part: 'snippet'
             }).then(response => {
                 if (response.result.items.length > 0) {
@@ -37,8 +37,22 @@ export default class Youtube {
         });
     }
 
-    _filter(s) {
-        [/#[^ ]+/g, /@[^ ]+/g, /-/g, /playing/g].forEach(r => s = s.replace(r, ''));
-        return s;
+    _filter(tweet) {
+        let s = tweet.text;
+
+        [
+            /#[^ ]+/g,
+            /@[^ ]+/g,
+            /-/g,
+            /playing/gi,
+            /https?:\/\/[^ ]+/g,
+            /now playing/ig,
+            /new video/ig,
+            new RegExp(tweet.user.screen_name, 'ig'),
+            /[:;"]/ig
+        ].forEach(r => s = s.replace(r, ''));
+
+
+        return s.trim();
     }
 }

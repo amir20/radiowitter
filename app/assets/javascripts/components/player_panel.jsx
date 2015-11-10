@@ -14,7 +14,7 @@ export default class PlayerPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {history: Immutable.List(), nowPlaying: null};
-        this._twitter = new Twitter();
+        this._twitter = new Twitter('RapRadar');
         this._youtube = new Youtube();
         this._player = new Player();
     }
@@ -51,8 +51,11 @@ export default class PlayerPanel extends Component {
     playRandomTweet() {
         this._twitter.nextRandomTweet().then(tweet => {
                 this._youtube.findFirstMatch(tweet).then(video => {
-                    this._player.playVideo(video.id.videoId);
-                    this.playVideo(tweet, video);
+                    if (video != null) {
+                        this.playVideo(tweet, video);
+                    } else {
+                        this.playRandomTweet();
+                    }
                 });
             }
         )

@@ -2,10 +2,10 @@ import $ from 'jquery'
 import Immutable from 'immutable'
 
 export default class Twitter {
-    constructor() {
+    constructor(handle) {
         this._mostRecent = null;
         this._tweets = Immutable.List.of();
-        this._handle = 'bpm_playlist';
+        this._handle = handle;
     }
 
     nextTweet() {
@@ -47,7 +47,7 @@ export default class Twitter {
     _params() {
         return this._mostRecent == null ? {count: 1, screen_name: this._handle} : {
             since_id: this._mostRecent.id_str,
-            screen_name: 'bpm_playlist'
+            screen_name: this._handle
         };
     }
 }
