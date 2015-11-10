@@ -1,0 +1,3 @@
+web: bundle exec rails s
+webpack: bundle exec rake assets:webpack:watch
+
