@@ -6,6 +6,7 @@ export default class Twitter {
         this._mostRecent = null;
         this._tweets = Immutable.List.of();
         this._handle = handle;
+        this._randomQueue = Immutable.List.of();
     }
 
     nextTweet() {
@@ -23,7 +24,7 @@ export default class Twitter {
                             this._tweets = this._tweets.pop();
                             this._mostRecent = nextTweet;
                         }
-                    
+
                         return nextTweet;
                     }
                 );
@@ -31,9 +32,18 @@ export default class Twitter {
     }
 
     nextRandomTweet() {
-        return Promise.resolve($.get("/twitter/search.json", {count: 25, screen_name: this._handle}))
-            .then(tweets => tweets[Math.floor(Math.random() * tweets.length)]);
-
+        if (!this._randomQueue.isEmpty()) {
+            let nextTweet = this._randomQueue.last();
+            this._randomQueue = this._randomQueue.pop();
+            return Promise.resolve(nextTweet);
+        } else {
+            return Promise.resolve($.get("/twitter/search.json", {count: 100, screen_name: this._handle}))
+                .then(tweets => {
+                        this._randomQueue = Immutable.List(Twitter.shuffleArray(tweets));
+                        return this.nextRandomTweet();
+                    }
+                );
+        }
     }
 
     mostRecent() {
@@ -49,5 +59,15 @@ export default class Twitter {
             since_id: this._mostRecent.id_str,
             screen_name: this._handle
         };
+    }
+
+    static shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            let temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
     }
 }

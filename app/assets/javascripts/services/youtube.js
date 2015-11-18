@@ -22,10 +22,29 @@ export default class Youtube {
     constructor() {
     }
 
-    findFirstMatch(tweet) {
+    findBestMatch(text) {
+        const query = this._filter(text);
+        console.log("Searching for video by text: " + query);
+
         return ytApi.then(api => {
             return api.search.list({
-                q: this._filter(tweet),
+                q: query,
+                part: 'snippet'
+            }).then(response => {
+                if (response.result.items.length > 0) {
+                    return response.result.items[0];
+                } else {
+                    return Promise.reject('No videos found');
+                }
+            });
+        });
+    }
+
+    findById(id) {
+        console.log("Searching for video by id: " + id);
+        return ytApi.then(api => {
+            return api.video.list({
+                id: id,
                 part: 'snippet'
             }).then(response => {
                 if (response.result.items.length > 0) {
@@ -37,8 +56,8 @@ export default class Youtube {
         });
     }
 
-    _filter(tweet) {
-        let s = tweet.text;
+    _filter(text) {
+        let s = text;
 
         [
             /#[^ ]+/g,
@@ -48,7 +67,7 @@ export default class Youtube {
             /https?:\/\/[^ ]+/g,
             /now playing/ig,
             /new video/ig,
-            new RegExp(tweet.user.screen_name, 'ig'),
+            /^\w+:/ig,
             /[:;"]/ig
         ].forEach(r => s = s.replace(r, ''));
 

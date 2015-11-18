@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import PlayerPanel from './components/player_panel.jsx'
 import React from 'react'
 import ReactDOM from 'react-dom'
