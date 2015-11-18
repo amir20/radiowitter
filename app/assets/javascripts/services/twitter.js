@@ -37,7 +37,7 @@ export default class Twitter {
             this._randomQueue = this._randomQueue.pop();
             return Promise.resolve(nextTweet);
         } else {
-            return Promise.resolve($.get("/twitter/search.json", {count: 100, screen_name: this._handle}))
+            return Promise.resolve($.get("/twitter/search.json", {count: 50, screen_name: this._handle}))
                 .then(tweets => {
                         this._randomQueue = Immutable.List(Twitter.shuffleArray(tweets));
                         return this.nextRandomTweet();

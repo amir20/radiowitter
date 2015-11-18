@@ -18,9 +18,10 @@ export default co.wrap(function* (tweet) {
 
         try {
             let doc = yield scraper.lookForMedia(url);
-            if (doc.media.youtube) {
-                video = yield youtube.findById(doc.media.youtube);
-                console.log("Found video on " + url);
+
+            if (doc.media && doc.media.youtube) {
+                video = doc.media.youtube;
+                console.log('Found video on ' + url);
             }
         } catch (e) {
             console.error(e);

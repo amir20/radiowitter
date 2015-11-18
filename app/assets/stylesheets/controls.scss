@@ -6,3 +6,16 @@
     cursor: pointer;
   }
 }
+
+.stations {
+  li.station {
+    &:hover {
+      background-color: #ececec;
+      cursor: pointer;
+    }
+    .thumbnail {
+      width: 64px;
+      height: 64px;
+    }
+  }
+}

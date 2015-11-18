@@ -12,6 +12,7 @@ gem 'haml-rails', '~> 0.9'
 # APIs
 gem 'twitter'
 gem 'nokogiri'
+gem 'yt'
 
 # Assets
 gem 'bootstrap-sass', '~> 3.3.5'

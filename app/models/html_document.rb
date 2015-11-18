@@ -29,12 +29,15 @@ class HtmlDocument
   private
   def self.scrape_youtube(connection, page, media)
     match = YOUTUBE_REGEX.match(connection.base_uri.to_s)
+    video_id = nil
 
     # Look for youtube id in the page url
-    media[:youtube] =  match[1] if match
+    video_id =  match[1] if match
 
     # Look for all iframes
     iframe = page.css('iframe').find { |iframe| YOUTUBE_REGEX.match(iframe['src']) }
-    media[:youtube] = YOUTUBE_REGEX.match(iframe['src'])[1] if iframe
+    video_id = YOUTUBE_REGEX.match(iframe['src'])[1] if iframe
+
+    media[:youtube] = Yt::Video.new(id: video_id) if video_id.present?
   end
 end

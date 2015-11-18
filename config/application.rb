@@ -31,5 +31,9 @@ module Radiowitter
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     # config.active_record.raise_in_transactional_callbacks = true
+
+    Yt.configure do |config|
+      config.api_key = Figaro.env.youtube_api_key
+    end
   end
 end

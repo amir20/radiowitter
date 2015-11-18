@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PubSub from 'pubsub-js'
 import Immutable from 'immutable'
-import { Button, Modal, Grid, Row, Col } from 'react-bootstrap';
 
 import Twitter from '../services/twitter'
 import Player from '../services/player'
@@ -14,8 +13,8 @@ import History from './history.jsx'
 export default class PlayerPanel extends Component {
     constructor(props) {
         super(props);
-        this.state = {history: Immutable.List(), nowPlaying: null, showModal: false};
-        this._twitter = new Twitter('Beats1Plays');
+        this.state = {history: Immutable.List(), nowPlaying: null};
+        this._twitter = new Twitter('RapRadar');
         this._player = new Player();
     }
 
@@ -58,8 +57,13 @@ export default class PlayerPanel extends Component {
         )
     }
 
+    changeStation(station) {
+        this._twitter = new Twitter(station.handle);
+        this.playNextMatch();
+    }
+
     playVideo(tweet, video) {
-        this._player.playVideo(video.id.videoId);
+        this._player.playVideo(video.id);
         if (this.state.nowPlaying != null) {
             this.setState({history: this.state.history.unshift(this.state.nowPlaying)});
         }
@@ -70,39 +74,10 @@ export default class PlayerPanel extends Component {
     render() {
         return (
             <div>
-                <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false})}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Choose a Twitter Handle</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <h4>Overflowing text to show scroll behavior</h4>
-                        <ul>
-                        </ul>
-                        <p>
-                            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-                            egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                        </p>
-                        <p>
-                            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-                            scelerisque
-                            nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor
-                            fringilla.
-                        </p>
-                    </Modal.Body>
-                </Modal>
-
-                <Row>
-                    <Col md={6}>
-                        <Controls onNext={this.playNextMatch.bind(this)}
-                                  queue={this._twitter.queuedTweets()}
-                                  player={this._player}/>
-                    </Col>
-                    <Col md={6}>
-                        <Button bsSize="small" onClick={() => this.setState({ showModal: true})}>
-                            Change Station
-                        </Button>
-                    </Col>
-                </Row>
+                <Controls onNext={this.playNextMatch.bind(this)}
+                          queue={this._twitter.queuedTweets()}
+                          player={this._player}
+                          onStationChange={this.changeStation.bind(this)}/>
                 <NowPlaying data={this.state.nowPlaying}/>
                 <History list={this.state.history}/>
             </div>
