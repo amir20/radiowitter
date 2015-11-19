@@ -13,7 +13,7 @@ import History from './history.jsx'
 export default class PlayerPanel extends Component {
     constructor(props) {
         super(props);
-        this.state = {history: Immutable.List(), nowPlaying: null};
+        this.state = {history: Immutable.List(), nowPlaying: null, loading: true};
         this._twitter = new Twitter('RapRadar');
         this._player = new Player();
     }
@@ -28,6 +28,7 @@ export default class PlayerPanel extends Component {
     }
 
     playNextMatch() {
+        this.setState({loading: true});
         this._twitter.nextTweet().then(tweet => {
                 if (tweet) {
                     videoService(tweet)
@@ -46,6 +47,7 @@ export default class PlayerPanel extends Component {
 
 
     playRandomTweet() {
+        this.setState({loading: true});
         this._twitter.nextRandomTweet().then(tweet => {
                 videoService(tweet)
                     .then(video => this.playVideo(tweet, video))
@@ -67,7 +69,7 @@ export default class PlayerPanel extends Component {
         if (this.state.nowPlaying != null) {
             this.setState({history: this.state.history.unshift(this.state.nowPlaying)});
         }
-        this.setState({nowPlaying: {tweet: tweet, video: video}});
+        this.setState({nowPlaying: {tweet: tweet, video: video}, loading: false});
     }
 
 
@@ -77,7 +79,9 @@ export default class PlayerPanel extends Component {
                 <Controls onNext={this.playNextMatch.bind(this)}
                           queue={this._twitter.queuedTweets()}
                           player={this._player}
-                          onStationChange={this.changeStation.bind(this)}/>
+                          loading={this.state.loading}
+                          onStationChange={this.changeStation.bind(this)}
+                          refs="controls"/>
                 <NowPlaying data={this.state.nowPlaying}/>
                 <History list={this.state.history}/>
             </div>

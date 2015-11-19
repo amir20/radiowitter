@@ -1,3 +1,8 @@
+.title-bar {
+  height: 50px;
+  margin-top: 10px;
+}
+
 .controls {
   text-align: center;
   a {
@@ -16,6 +21,24 @@
     .thumbnail {
       width: 64px;
       height: 64px;
+    }
+  }
+}
+
+.change-station {
+  span {
+    display: none;
+  }
+  .default {
+    display: inline;
+  }
+
+  &:hover {
+    .default {
+      display: none;
+    }
+    .over {
+      display: inline;
     }
   }
 }
