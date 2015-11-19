@@ -6,7 +6,7 @@ export default class Youtube {
 
     findBestMatch(text) {
         const query = this._filter(text);
-        console.log('Searching for video by text: ' + query);
+        console.log(`Searching for video by text: [${query}].`);
 
         return Promise.resolve($.get("/youtube/search.json", {q: query}))
             .then(videos => {

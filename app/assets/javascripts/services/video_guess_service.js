@@ -21,7 +21,7 @@ export default co.wrap(function* (tweet) {
 
             if (doc.media && doc.media.youtube) {
                 video = doc.media.youtube;
-                console.log('Found video on ' + url);
+                console.log(`Found video on [${url}].`);
             }
         } catch (e) {
             console.error(e);
