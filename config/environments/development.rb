@@ -38,4 +38,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  Yt.configure do |config|
+    config.api_key = Figaro.env.youtube_api_key
+    config.log_level = :debug
+  end
 end

@@ -1,8 +1,45 @@
+.title-bar {
+  height: 50px;
+  margin-top: 10px;
+}
+
 .controls {
   text-align: center;
   a {
     font-size: 26px;
     text-decoration: none;
     cursor: pointer;
+  }
+}
+
+.stations {
+  li.station {
+    &:hover {
+      background-color: #ececec;
+      cursor: pointer;
+    }
+    .thumbnail {
+      width: 64px;
+      height: 64px;
+    }
+  }
+}
+
+.change-station {
+  > span {
+    display: none;
+
+    &.default {
+      display: inline;
+    }
+  }
+
+  &:hover {
+    > .default {
+      display: none;
+    }
+    > .over {
+      display: inline;
+    }
   }
 }

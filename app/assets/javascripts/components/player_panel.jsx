@@ -3,8 +3,8 @@ import PubSub from 'pubsub-js'
 import Immutable from 'immutable'
 
 import Twitter from '../services/twitter'
-import Youtube from '../services/youtube'
 import Player from '../services/player'
+import videoService from '../services/video_guess_service'
 import Controls from './controls.jsx'
 import NowPlaying from './now_playing.jsx'
 import History from './history.jsx'
@@ -13,32 +13,30 @@ import History from './history.jsx'
 export default class PlayerPanel extends Component {
     constructor(props) {
         super(props);
-        this.state = {history: Immutable.List(), nowPlaying: null};
-        this._twitter = new Twitter();
-        this._youtube = new Youtube();
+        this.state = {history: Immutable.List(), nowPlaying: null, loading: true};
         this._player = new Player();
     }
 
     componentDidMount() {
-        this.playNextMatch();
         PubSub.subscribe('video.state', (msg, data) => {
             if (data == 'ENDED') {
                 this.playNextMatch();
             }
         });
+
+        this.refs.controls.initStations();
     }
 
     playNextMatch() {
+        this.setState({loading: true});
         this._twitter.nextTweet().then(tweet => {
                 if (tweet) {
-                    this._youtube.findFirstMatch(tweet).then(video => {
-                        if (video != null) {
-                            this.playVideo(tweet, video);
-                        } else {
-                            // when no matches found
+                    videoService(tweet)
+                        .then(video => this.playVideo(tweet, video))
+                        .catch(e => {
+                            console.error(e);
                             this.playRandomTweet();
-                        }
-                    });
+                        });
                 } else {
                     // play random video when no tweet found
                     this.playRandomTweet();
@@ -49,21 +47,29 @@ export default class PlayerPanel extends Component {
 
 
     playRandomTweet() {
+        this.setState({loading: true});
         this._twitter.nextRandomTweet().then(tweet => {
-                this._youtube.findFirstMatch(tweet).then(video => {
-                    this._player.playVideo(video.id.videoId);
-                    this.playVideo(tweet, video);
-                });
+                videoService(tweet)
+                    .then(video => this.playVideo(tweet, video))
+                    .catch(e => {
+                        console.error(e);
+                        this.playRandomTweet();
+                    });
             }
         )
     }
 
+    changeStation(station) {
+        this._twitter = new Twitter(station.handle);
+        this.playNextMatch();
+    }
+
     playVideo(tweet, video) {
-        this._player.playVideo(video.id.videoId);
+        this._player.playVideo(video.id);
         if (this.state.nowPlaying != null) {
             this.setState({history: this.state.history.unshift(this.state.nowPlaying)});
         }
-        this.setState({nowPlaying: {tweet: tweet, video: video}});
+        this.setState({nowPlaying: {tweet: tweet, video: video}, loading: false});
     }
 
 
@@ -71,8 +77,10 @@ export default class PlayerPanel extends Component {
         return (
             <div>
                 <Controls onNext={this.playNextMatch.bind(this)}
-                          queue={this._twitter.queuedTweets()}
-                          player={this._player}/>
+                          player={this._player}
+                          loading={this.state.loading}
+                          onStationChange={this.changeStation.bind(this)}
+                          ref="controls"/>
                 <NowPlaying data={this.state.nowPlaying}/>
                 <History list={this.state.history}/>
             </div>

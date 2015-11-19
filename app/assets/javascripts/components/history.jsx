@@ -14,15 +14,15 @@ export default class History extends Component {
                 <h4>Play History</h4>
                 <ul className="list-unstyled">
                     {
-                        this.props.list.map(function (item) {
+                        this.props.list.map(item => {
                             return (
                                 <li className="media" key={item.tweet.id_str}>
                                     <div className="media-left">
                                         <img className="media-object thumbnail"
-                                             src={item.video.snippet.thumbnails.default.url}/>
+                                             src={item.video.thumbnail_url}/>
                                     </div>
                                     <div className="media-body">
-                                        <div className="media-heading title">{item.video.snippet.title}</div>
+                                        <div className="media-heading title">{item.video.title}</div>
                                     </div>
                                 </li>
                             );
