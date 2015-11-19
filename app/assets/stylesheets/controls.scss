@@ -26,18 +26,19 @@
 }
 
 .change-station {
-  span {
+  > span {
     display: none;
-  }
-  .default {
-    display: inline;
+
+    &.default {
+      display: inline;
+    }
   }
 
   &:hover {
-    .default {
+    > .default {
       display: none;
     }
-    .over {
+    > .over {
       display: inline;
     }
   }

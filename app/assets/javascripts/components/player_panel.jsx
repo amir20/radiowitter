@@ -14,17 +14,17 @@ export default class PlayerPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {history: Immutable.List(), nowPlaying: null, loading: true};
-        this._twitter = new Twitter('RapRadar');
         this._player = new Player();
     }
 
     componentDidMount() {
-        this.playNextMatch();
         PubSub.subscribe('video.state', (msg, data) => {
             if (data == 'ENDED') {
                 this.playNextMatch();
             }
         });
+
+        this.refs.controls.initStations();
     }
 
     playNextMatch() {
@@ -77,11 +77,10 @@ export default class PlayerPanel extends Component {
         return (
             <div>
                 <Controls onNext={this.playNextMatch.bind(this)}
-                          queue={this._twitter.queuedTweets()}
                           player={this._player}
                           loading={this.state.loading}
                           onStationChange={this.changeStation.bind(this)}
-                          refs="controls"/>
+                          ref="controls"/>
                 <NowPlaying data={this.state.nowPlaying}/>
                 <History list={this.state.history}/>
             </div>

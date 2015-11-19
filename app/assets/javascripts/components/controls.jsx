@@ -28,7 +28,7 @@ const stations = [
 export default class Controls extends Component {
     constructor(props) {
         super(props);
-        this.state = {playing: false, showModal: false};
+        this.state = {playing: false, showModal: false, selectedStation: {handle: 'music'}};
     }
 
     componentDidMount() {
@@ -38,10 +38,24 @@ export default class Controls extends Component {
     }
 
     changeStation(station) {
+        this.setState({showModal: false, selectedStation: station});
         this.props.onStationChange(station);
-        this.setState({showModal: false});
-
+        localStorage.selectedStation = station.handle;
     }
+
+    showStations() {
+        this.setState({showModal: true});
+    }
+
+    initStations() {
+        if (localStorage.selectedStation) {
+            let station = stations.find(station => station.handle = localStorage.selectedStation);
+            this.changeStation(station);
+        } else {
+            this.showStations();
+        }
+    }
+
 
     render() {
         let mainButton = this.state.playing ?
@@ -96,9 +110,8 @@ export default class Controls extends Component {
                         {buttons}
                     </Col>
                     <Col md={6}>
-                        <Button className="change-station" bsSize="small"
-                                onClick={() => this.setState({ showModal: true})}>
-                            <span className="default">playing @bpm_playlist</span>
+                        <Button className="change-station" bsSize="small" onClick={() => this.showStations()}>
+                            <span className="default">playing @{this.state.selectedStation.handle}</span>
                             <span className="over">Change Station</span>
                         </Button>
                     </Col>
