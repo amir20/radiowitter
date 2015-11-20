@@ -6,7 +6,7 @@ import Scraper from './scraper'
 const youtube = new Youtube();
 const scraper = new Scraper();
 
-export default co.wrap(function* (tweet) {
+export default co.wrap(function *(tweet) {
     if (!tweet) {
         throw 'tweet is null'
     }
@@ -32,7 +32,7 @@ export default co.wrap(function* (tweet) {
         try {
             video = yield youtube.findBestMatch(tweet.text);
         } catch (e) {
-            yield Promise.reject(new Error('No match found for tweet.'));
+            yield Promise.reject(`No match found for tweet. [${e}]`);
         }
     }
 

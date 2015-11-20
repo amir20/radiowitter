@@ -6,6 +6,11 @@ export default class Youtube {
 
     findBestMatch(text) {
         const query = this._filter(text);
+
+        if (query.length < 5) {
+            return Promise.reject(`[${query}] is too short to search.`);
+        }
+
         console.log(`Searching for video by text: [${query}].`);
 
         return Promise.resolve($.get("/youtube/search.json", {
@@ -34,6 +39,7 @@ export default class Youtube {
             /now playing/ig,
             /new video/ig,
             /rt /ig,
+            /\bon\b/ig,
             /^\w+:/ig,
             /[:;"]/ig
         ].forEach(r => s = s.replace(r, ''));
