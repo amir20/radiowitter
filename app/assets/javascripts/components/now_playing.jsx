@@ -19,7 +19,7 @@ export default class NowPlaying extends Component {
                     </div>
                 </div>);
         } else {
-            return <div>Loading...</div>;
+            return <div>Please wait...</div>;
         }
     }
 }

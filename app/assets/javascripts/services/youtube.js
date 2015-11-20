@@ -11,16 +11,12 @@ export default class Youtube {
         return Promise.resolve($.get("/youtube/search.json", {
                 q: query,
                 order: 'viewCount',
-                video_duration: 'short',
                 video_syndicated: true,
-                max_results: 1
+                max_results: 5
             }))
             .then(videos => {
-                    if (videos.length > 0) {
-                        return videos[0];
-                    } else {
-                        return Promise.reject('No videos found');
-                    }
+                    let video = videos.find(v => v.duration > 180 && v.duration < 540);
+                    return video || Promise.reject('No videos found');
                 }
             );
     }
