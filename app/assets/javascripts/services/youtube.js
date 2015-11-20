@@ -8,7 +8,13 @@ export default class Youtube {
         const query = this._filter(text);
         console.log(`Searching for video by text: [${query}].`);
 
-        return Promise.resolve($.get("/youtube/search.json", {q: query}))
+        return Promise.resolve($.get("/youtube/search.json", {
+                q: query,
+                order: 'viewCount',
+                video_duration: 'short',
+                video_syndicated: true,
+                max_results: 1
+            }))
             .then(videos => {
                     if (videos.length > 0) {
                         return videos[0];

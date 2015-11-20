@@ -5,10 +5,14 @@ class YoutubeController < ApplicationController
   end
 
   def search
-    @videos = Yt::Collections::Videos.new.where(search_params).first(1)
+    ids = Yt::Collections::Videos.new
+              .where(search_params.merge(part: 'snippet'))
+              .first((search_params[:max_results] || 10).to_i).map(&:id)
+
+    @videos = Yt::Collections::Videos.new.where(id: ids.join(','), part: 'snippet,contentDetails,status,statistics')
   end
 
   def search_params
-    params.permit(:q, :id)
+    params.permit(:q, :id, :order, :max_results, :video_duration, :video_syndicated)
   end
 end
