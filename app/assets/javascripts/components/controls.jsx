@@ -49,7 +49,7 @@ export default class Controls extends Component {
 
     initStations() {
         if (localStorage.selectedStation) {
-            let station = stations.find(station => station.handle = localStorage.selectedStation);
+            let station = stations.find(station => station.handle == localStorage.selectedStation);
             this.changeStation(station);
         } else {
             this.showStations();
@@ -87,6 +87,7 @@ export default class Controls extends Component {
                         <ul className="stations list-unstyled">
                             {
                                 stations.map(station => {
+
                                     return (
                                     <li className="media station" key={station.handle}
                                         onClick={() => this.changeStation(station)}>
