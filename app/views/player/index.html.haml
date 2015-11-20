@@ -3,6 +3,5 @@
     .col-sm-8.col-md-9.main
       #player
     .col-sm-4.col-md-3.sidebar
-      = react_component 'PlayerPanel', {}, prerender: true
-
-
+      - cache 'PlayerPanel' do
+        = react_component 'PlayerPanel', {}, prerender: true
