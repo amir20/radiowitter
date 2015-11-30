@@ -2,8 +2,13 @@
 %html
   %head
     %meta{content: 'text/html; charset=UTF-8', :'http-equiv' => 'Content-Type'}/
-    %meta{content: 'Radio stations powered by Twitter. Create your own radio stations or listen to music stations like XM & FM radio from Twitter.', name: 'description'}/
-    %title Radiowitter - Radio music stations powered by Twitter feeds
+    %meta{content: t('meta.description'), name: 'description'}/
+    %meta{content: t('meta.description'), name: 'og:description'}/
+    %meta{content: t('meta.site_name'), name: 'og:site_name'}/
+    %meta{content: t('meta.type'), name: 'og:type'}/
+    %meta{content: t('meta.url'), name: 'og:url'}/
+    %meta{content: t('meta.title'), name: 'og:title'}/
+    %title= t('meta.title')
     = stylesheet_link_tag    'application', media: 'all'
   %body
     = yield
