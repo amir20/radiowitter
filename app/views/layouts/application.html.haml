@@ -1,10 +1,10 @@
 !!!
 %html
   %head
-    %meta{:content => 'text/html; charset=UTF-8', 'http-equiv' => 'Content-Type'}/
-    %title Radiowitter
-    = stylesheet_link_tag    'application', media: 'all' 
-    = csrf_meta_tags
+    %meta{content: 'text/html; charset=UTF-8', :'http-equiv' => 'Content-Type'}/
+    %meta{content: 'Radio stations powered by Twitter. Create your own radio stations or listen to music stations like XM & FM radio from Twitter.', name: 'description'}/
+    %title Radiowitter - Radio music stations powered by Twitter feeds
+    = stylesheet_link_tag    'application', media: 'all'
   %body
     = yield
     = javascript_include_tag 'application'
