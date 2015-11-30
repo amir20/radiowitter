@@ -8,8 +8,8 @@ const History = require('../history');
 
 describe('History', () => {
     it('should tell use it is a demo component', () => {
-        var historyComponent = TestUtils.renderIntoDocument(<History list={Immutable.List.of()}/>);
-        var node = ReactDOM.findDOMNode(historyComponent);
+        let historyComponent = TestUtils.renderIntoDocument(<History list={Immutable.List.of()} />);
+        let node = ReactDOM.findDOMNode(historyComponent);
 
         expect(node.textContent).toEqual('');
     });
