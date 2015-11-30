@@ -15,12 +15,12 @@
     "react-bootstrap": "^0.28.1",
     "react-dom": "^0.14.3",
     "webpack": "^1.12.9",
-    "youtube-iframe-player": "^1.0.1"
-  },
-  "devDependencies": {
+    "youtube-iframe-player": "^1.0.1",
     "babel-jest": "^6.0.1",
     "jest-cli": "^0.8.0",
     "react-addons-test-utils": "~0.14.0"
+  },
+  "devDependencies": {
   },
   "scripts": {
     "test": "jest"
