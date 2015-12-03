@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class History extends Component {
+export default class History extends Component {
     constructor(props) {
         super(props);
     }
@@ -33,5 +33,3 @@ class History extends Component {
         )
     }
 }
-
-module.exports = History;
