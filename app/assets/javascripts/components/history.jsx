@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import TimeAgo from './time_ago.jsx'
 
 export default class History extends Component {
     constructor(props) {
@@ -23,6 +24,9 @@ export default class History extends Component {
                                     </div>
                                     <div className="media-body">
                                         <div className="media-heading title">{item.video.title}</div>
+                                        <div className="when">
+                                            tweeted <TimeAgo date={new Date(item.tweet.created_at)}/>
+                                        </div>
                                     </div>
                                 </li>
                             );
