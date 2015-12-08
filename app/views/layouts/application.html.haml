@@ -9,6 +9,8 @@
     %meta{content: t('meta.url'), name: 'og:url'}/
     %meta{content: t('meta.title'), name: 'og:title'}/
     %title= t('meta.title')
+    %link{href: 'http://fonts.googleapis.com/css?family=Roboto:300,400,500,700', rel: 'stylesheet', type: 'text/css'}
+    %link{href: 'https://fonts.googleapis.com/icon?family=Material+Icons', rel: 'stylesheet'}
     = stylesheet_link_tag    'application', media: 'all'
   %body
     = yield
