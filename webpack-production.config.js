@@ -21,6 +21,7 @@ module.exports = {
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({minimize: true}),
         new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new webpack.DefinePlugin({
             'process.env': {
                 // This has effect on the react lib size

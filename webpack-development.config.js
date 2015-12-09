@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
     context: __dirname + '/app/assets/javascripts',
     entry: {components: './_components.js'},
@@ -12,5 +14,8 @@ module.exports = {
                 test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader'
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    ]
 };
