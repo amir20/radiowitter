@@ -11,6 +11,6 @@ describe('History', () => {
         let historyComponent = TestUtils.renderIntoDocument(<History list={Immutable.List.of()} />);
         let node = ReactDOM.findDOMNode(historyComponent);
 
-        expect(node.textContent).toEqual('');
+        expect(node.textContent).toEqual('Play HistoryFirst song needs to finish before a history can be displayed.');
     });
 });
