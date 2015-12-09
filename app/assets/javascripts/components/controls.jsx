@@ -107,11 +107,11 @@ export default class Controls extends Component {
                 </Modal>
 
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-4">
                         {buttons}
                     </div>
 
-                    <div className="col-md-6">
+                    <div className="col-md-8">
                         <button className="change-station btn btn-sm btn-default"
                                 type="button"
                                 onClick={() => this.showStations()}>

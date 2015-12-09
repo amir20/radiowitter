@@ -8,7 +8,12 @@ export default class History extends Component {
 
     render() {
         if (this.props.list.isEmpty()) {
-            return <div className="history"></div>;
+            return(
+                <div className="history">
+                    <h4>Play History</h4>
+                    First song needs to finish before a history can be displayed.  
+                </div>
+            );
         }
         return (
             <div className="history">
