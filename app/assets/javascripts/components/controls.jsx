@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PubSub from 'pubsub-js'
-import { Button, Modal, Grid, Row, Col } from 'react-bootstrap'
+import  Modal  from 'react-bootstrap-modal'
 
 const stations = [
     {
@@ -89,34 +89,37 @@ export default class Controls extends Component {
                                 stations.map(station => {
 
                                     return (
-                                    <li className="media station" key={station.handle}
-                                        onClick={() => this.changeStation(station)}>
-                                        <div className="media-left">
-                                            <img className="media-object thumbnail" src={station.image}/>
-                                        </div>
-                                        <div className="media-body">
-                                            <h5 className="media-heading title">@{station.handle}</h5>
-                                            <div className="media-heading description">{station.description}</div>
-                                        </div>
-                                    </li>
-                                        );
-                                    })
-                                }
+                                        <li className="media station" key={station.handle}
+                                            onClick={() => this.changeStation(station)}>
+                                            <div className="media-left">
+                                                <img className="media-object thumbnail" src={station.image}/>
+                                            </div>
+                                            <div className="media-body">
+                                                <h5 className="media-heading title">@{station.handle}</h5>
+                                                <div className="media-heading description">{station.description}</div>
+                                            </div>
+                                        </li>
+                                    );
+                                })
+                            }
                         </ul>
                     </Modal.Body>
                 </Modal>
 
-                <Row>
-                    <Col md={6}>
+                <div className="row">
+                    <div className="col-md-6">
                         {buttons}
-                    </Col>
-                    <Col md={6}>
-                        <Button className="change-station" bsSize="small" onClick={() => this.showStations()}>
+                    </div>
+
+                    <div className="col-md-6">
+                        <button className="change-station btn btn-sm btn-default"
+                                type="button"
+                                onClick={() => this.showStations()}>
                             <span className="default">playing @{this.state.selectedStation.handle}</span>
                             <span className="over">Change Station</span>
-                        </Button>
-                    </Col>
-                </Row>
+                        </button>
+                    </div>
+                </div>
             </div>
         )
     }
