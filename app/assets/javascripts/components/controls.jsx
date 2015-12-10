@@ -33,6 +33,11 @@ const stations = [
         image: 'https://pbs.twimg.com/profile_images/552558427906396160/poTx8O2Y.png',
         description: "DeepFM Playlist. We are Dance! Please also follow our main account @DeepFM."
     },
+    {
+        handle: 'Energia97play',
+        image: 'https://pbs.twimg.com/profile_images/714163733/AF-logo-CMYK.jpg',
+        description: "Aqui você confere, em tempo real, as músicas da programação normal da Energia 97 FM."
+    },
 ];
 
 export default class Controls extends Component {

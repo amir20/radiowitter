@@ -40,7 +40,8 @@ export default class Youtube {
             /new video/ig,
             /rt /ig,
             /\bon\b/ig,
-            /^.+?:/ig,
+            /\d?\d:\d\d([ap]m)?/ig, // 11:23
+            /^.+?:/ig, // Example: ...
             /[:;"]/ig
         ].forEach(r => s = s.replace(r, ''));
 

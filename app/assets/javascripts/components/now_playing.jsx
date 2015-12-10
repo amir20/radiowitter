@@ -10,7 +10,6 @@ export default class NowPlaying extends Component {
         if (this.props.data) {
             return (
                 <div className="media now-playing">
-                    <h4>Now Playing</h4>
                     <div className="media-body">
                         <h5 className="media-heading">{this.props.data.video.title}</h5>
                         {this.props.data.tweet.text}

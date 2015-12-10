@@ -16,8 +16,8 @@
 
 .stations {
   li.station {
-    padding: 5px 0;
-    margin: 0;
+    padding: 5px;
+    margin: 0 0 5px;
 
     &:hover {
       background-color: #ececec;
@@ -26,6 +26,7 @@
     .thumbnail {
       width: 64px;
       height: 64px;
+      margin: 0;
     }
   }
 }
