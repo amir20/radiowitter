@@ -16,6 +16,8 @@
 
 .stations {
   li.station {
+    padding: 8px;
+
     &:hover {
       background-color: #ececec;
       cursor: pointer;
