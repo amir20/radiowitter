@@ -23,6 +23,16 @@ const stations = [
         image: 'https://pbs.twimg.com/profile_images/2312907258/0591AB3A-6FAB-43B1-B532-CB019DFCC7DB',
         description: "If It Happened In Hip-Hop, It's Here. The Official Twitter For Rap Radar."
     },
+    {
+        handle: 'kexpplaylist',
+        image: 'https://pbs.twimg.com/profile_images/119681754/KEXP-Logo_eq_Square_73x73.gif',
+        description: "90.3 FM KEXP Seattle, WA - Where the Music Matters."
+    },
+    {
+        handle: 'deepfmplaylist',
+        image: 'https://pbs.twimg.com/profile_images/552558427906396160/poTx8O2Y.png',
+        description: "DeepFM Playlist. We are Dance! Please also follow our main account @DeepFM."
+    },
 ];
 
 export default class Controls extends Component {
