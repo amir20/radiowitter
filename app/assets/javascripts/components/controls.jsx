@@ -112,7 +112,7 @@ export default class Controls extends Component {
                     </div>
 
                     <div className="col-md-8">
-                        <button className="change-station btn btn-sm btn-default"
+                        <button className="change-station btn btn-sm btn-raised btn-primary"
                                 type="button"
                                 onClick={() => this.showStations()}>
                             <span className="default">playing @{this.state.selectedStation.handle}</span>

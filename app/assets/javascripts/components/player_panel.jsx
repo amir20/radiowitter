@@ -76,13 +76,19 @@ export default class PlayerPanel extends Component {
     render() {
         return (
             <div>
-                <Controls onNext={this.playNextMatch.bind(this)}
-                          player={this._player}
-                          loading={this.state.loading}
-                          onStationChange={this.changeStation.bind(this)}
-                          ref="controls"/>
-                <NowPlaying data={this.state.nowPlaying}/>
-                <History list={this.state.history}/>
+                <section>
+                    <Controls onNext={this.playNextMatch.bind(this)}
+                              player={this._player}
+                              loading={this.state.loading}
+                              onStationChange={this.changeStation.bind(this)}
+                              ref="controls"/>
+                </section>
+                <section>
+                    <NowPlaying data={this.state.nowPlaying}/>
+                </section>
+                <section>
+                    <History list={this.state.history}/>
+                </section>
             </div>
         )
     }

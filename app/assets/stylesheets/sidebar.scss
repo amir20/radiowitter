@@ -1,3 +1,9 @@
-.sidebar{
+.sidebar {
   padding: 0;
+  background: #fff;
+
+  section {
+    padding: 5px 12px;
+    border-bottom: 1px solid #eee;
+  }
 }
