@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PubSub from 'pubsub-js'
-import  Modal  from 'react-bootstrap-modal'
+import Modal from 'react-bootstrap/lib/Modal'
 
 const stations = [
     {
