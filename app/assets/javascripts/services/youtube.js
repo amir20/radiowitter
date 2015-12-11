@@ -14,8 +14,7 @@ export default class Youtube {
         console.log(`Searching for video by text: [${query}].`);
 
         return Promise.resolve($.get("/youtube/search.json", {
-                q: query,
-                order: 'viewCount',
+                q: query,             
                 video_syndicated: true,
                 max_results: 5
             }))
