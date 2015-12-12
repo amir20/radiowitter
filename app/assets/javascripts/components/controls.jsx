@@ -4,6 +4,11 @@ import Modal from 'react-bootstrap/lib/Modal'
 
 const stations = [
     {
+        handle: 'newmusicvideo',
+        image: 'https://pbs.twimg.com/profile_images/378800000539154393/e239d0e8ab760ec48042a817c63fe9b1.png',
+        description: "New music video releases. Brought to you by @imvdb, the internet music video database."
+    },
+    {
         handle: 'bpm_playlist',
         image: 'https://pbs.twimg.com/profile_images/528229203208966146/40XOYjyZ.jpeg',
         description: "BPM is America's Dance Hits Channel on @sxmElectro SiriusXM 51! Today's biggest dance hits, remixes, and more. You can find a history of all songs played here."
@@ -32,11 +37,6 @@ const stations = [
         handle: 'deepfmplaylist',
         image: 'https://pbs.twimg.com/profile_images/552558427906396160/poTx8O2Y.png',
         description: "DeepFM Playlist. We are Dance! Please also follow our main account @DeepFM."
-    },
-    {
-        handle: 'Energia97play',
-        image: 'https://pbs.twimg.com/profile_images/714163733/AF-logo-CMYK.jpg',
-        description: "Aqui você confere, em tempo real, as músicas da programação normal da Energia 97 FM."
     },
 ];
 

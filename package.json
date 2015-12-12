@@ -2,7 +2,7 @@
   "name": "radiowitter",
   "version": "1.0.0",
   "dependencies": {
-    "babel-core": "^6.3.15",
+    "babel-core": "^6.3.17",
     "babel-jest": "^6.0.1",
     "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.1.1",
@@ -12,7 +12,7 @@
     "bootstrap-material-design": "^0.3.0",
     "co": "^4.6.0",
     "immutable": "^3.7.5",
-    "jest-cli": "^0.8.0",
+    "jest-cli": "^0.8.1",
     "jquery": "^2.1.4",
     "moment": "^2.10.6",
     "pubsub-js": "^1.5.3",
