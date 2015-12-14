@@ -4,14 +4,19 @@ import Modal from 'react-bootstrap/lib/Modal'
 
 const stations = [
     {
-        handle: 'newmusicvideo',
-        image: 'https://pbs.twimg.com/profile_images/378800000539154393/e239d0e8ab760ec48042a817c63fe9b1.png',
-        description: "New music video releases. Brought to you by @imvdb, the internet music video database."
-    },
-    {
         handle: 'bpm_playlist',
         image: 'https://pbs.twimg.com/profile_images/528229203208966146/40XOYjyZ.jpeg',
         description: "BPM is America's Dance Hits Channel on @sxmElectro SiriusXM 51! Today's biggest dance hits, remixes, and more. You can find a history of all songs played here."
+    },
+    {
+        handle: 'wknc881playlist',
+        image: 'https://pbs.twimg.com/profile_images/3433875319/bf30b727b6a4fefa065df379a11f13ad.jpeg',
+        description: "NOW PLAYING on WKNC 88.1 FM, N.C. State's student-run radio station for indie rock, electronic, metal and underground hip-hop."
+    },
+    {
+        handle: 'area_playlist',
+        image: 'https://pbs.twimg.com/profile_images/528230965265457152/kL8WGG_o.jpeg',
+        description: "Electric Area is America's Dance Music/Mix Channel on @sxmElectro SiriusXM 52! House, Bigroom, Trance and more. You can find a history of all songs played here."
     },
     {
         handle: 'Beats1Plays',
