@@ -24,9 +24,9 @@ const stations = [
         description: "Live tweeting what is being played on @Beats1 - By @callumj for #Beats1"
     },
     {
-        handle: 'SpotifyNowPlay',
-        image: 'https://pbs.twimg.com/profile_images/1916496228/spotify1.jpg',
-        description: "A Twitter account grouping all #NowPlaying hashtags on music platform @Spotify."
+        handle: 'keepupdude',
+        image: 'https://pbs.twimg.com/profile_images/481067300808687618/s7lx7LdY.jpeg',
+        description: "Discover new and established artists new tracks and #FreeDownloads here!"
     },
     {
         handle: 'RapRadar',
