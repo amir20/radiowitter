@@ -9,6 +9,6 @@ class TwitterController < ApplicationController
   end
 
   def search_params
-    params.permit(:count, :max_id, :since_id, :user_id, :screen_name)
+    params.permit(:count, :max_id, :since_id, :user_id, :screen_name).to_h
   end
 end

@@ -5,6 +5,6 @@ class ScraperController < ApplicationController
   end
 
   def index_params
-    params.permit(:url)
+    params.permit(:url).to_h
   end
 end
