@@ -19,23 +19,18 @@ const stations = [
         description: "Electric Area is America's Dance Music/Mix Channel on @sxmElectro SiriusXM 52! House, Bigroom, Trance and more. You can find a history of all songs played here."
     },
     {
-        handle: 'Beats1Plays',
-        image: 'https://pbs.twimg.com/profile_images/636221567563792384/JffTmAx_.jpg',
-        description: "Live tweeting what is being played on @Beats1 - By @callumj for #Beats1"
-    },
-    {
         handle: 'keepupdude',
         image: 'https://pbs.twimg.com/profile_images/481067300808687618/s7lx7LdY.jpeg',
         description: "Discover new and established artists new tracks and #FreeDownloads here!"
     },
     {
         handle: 'RapRadar',
-        image: 'https://pbs.twimg.com/profile_images/2312907258/0591AB3A-6FAB-43B1-B532-CB019DFCC7DB',
+        image: 'https://pbs.twimg.com/profile_images/762807090578685952/aNn7P_kY.jpg',
         description: "If It Happened In Hip-Hop, It's Here. The Official Twitter For Rap Radar."
     },
     {
         handle: 'kexpplaylist',
-        image: 'https://pbs.twimg.com/profile_images/119681754/KEXP-Logo_eq_Square_73x73.gif',
+        image: 'https://pbs.twimg.com/profile_images/722839112256868352/pJtiivAh.jpg',
         description: "90.3 FM KEXP Seattle, WA - Where the Music Matters."
     },
     {
