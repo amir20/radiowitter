@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import TimeAgo from './time_ago.jsx'
+import React, {Component} from "react";
+import TimeAgo from "./time_ago.jsx";
 
 export default class History extends Component {
     constructor(props) {
@@ -8,10 +8,10 @@ export default class History extends Component {
 
     render() {
         if (this.props.list.isEmpty()) {
-            return(
+            return (
                 <div className="history">
                     <h4>Play History</h4>
-                    First song needs to finish before a history can be displayed.  
+                    First song needs to finish before a history can be displayed.
                 </div>
             );
         }

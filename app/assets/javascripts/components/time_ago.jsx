@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import moment from 'moment'
+import React, {Component} from "react";
+import moment from "moment";
 
 export default class TimeAgo extends Component {
     constructor(props) {
@@ -16,6 +16,6 @@ export default class TimeAgo extends Component {
 }
 
 const instances = [];
-if(setInterval) {
+if (setInterval) {
     setInterval(() => instances.forEach(i => i.forceUpdate()), 60 * 1000);
 }

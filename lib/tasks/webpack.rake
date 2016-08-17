@@ -19,7 +19,7 @@ namespace :assets do
   namespace :webpack do
     desc 'compile with webpack and watch for changes'
     task :watch do
-      sh "NODE_ENV=#{Rails.env} $(npm bin)/webpack --config webpack-#{Rails.env}.config.js --colors --progress --watch"
+      sh "NODE_ENV=#{Rails.env} $(npm bin)/webpack --config webpack-#{Rails.env}.config.js --progress --watch"
     end
   end
 end
