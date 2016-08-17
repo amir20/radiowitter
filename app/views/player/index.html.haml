@@ -7,4 +7,4 @@
         Radi#{inline_svg 'signal.svg', id: 'logo'}witter
         %small What's playing on Twitter&trade; now.
       - cache 'PlayerPanel' do
-        = react_component 'PlayerPanel', {}
+        = react_component 'PlayerPanel', {}, prerender: true
