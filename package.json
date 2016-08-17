@@ -15,10 +15,10 @@
     "jest-cli": "^14.1.0",
     "moment": "^2.11.1",
     "pubsub-js": "^1.5.3",
-    "react": "^15.0.2",
-    "react-addons-test-utils": "^15.0.2",
+    "react": "^15.3.0",
+    "react-addons-test-utils": "^15.3.0",
     "react-bootstrap": "^0.30.2",
-    "react-dom": "^15.0.2",
+    "react-dom": "^15.3.0",
     "webpack": "^2.1.0-beta.20",
     "whatwg-fetch": "^1.0.0",
     "youtube-iframe-player": "^1.0.1"
@@ -30,13 +30,6 @@
     "automock": false,
     "testPathDirs": [
       "<rootDir>/app/assets/javascripts"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "unmockedModulePathPatterns": [
-      "/node_modules/"
     ]
   }
 }
