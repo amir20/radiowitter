@@ -2,9 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import TestUtils from "react-addons-test-utils";
 import Immutable from "immutable";
-
-jest.dontMock('../history');
-const History = require('../history');
+import History from "../history.jsx"
 
 describe('History', () => {
     it('should tell use it is a demo component', () => {
