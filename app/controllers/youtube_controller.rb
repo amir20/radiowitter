@@ -13,6 +13,6 @@ class YoutubeController < ApplicationController
   end
 
   def search_params
-    params.permit(:q, :id, :order, :max_results, :video_duration, :video_syndicated)
+    params.permit(:q, :id, :order, :max_results, :video_duration, :video_syndicated).to_h
   end
 end
