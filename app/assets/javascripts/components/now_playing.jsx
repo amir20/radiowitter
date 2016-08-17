@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import TimeAgo from './time_ago.jsx'
+import React, {Component} from "react";
+import TimeAgo from "./time_ago.jsx";
 
 export default class NowPlaying extends Component {
     constructor(props) {

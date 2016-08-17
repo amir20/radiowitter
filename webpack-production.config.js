@@ -2,18 +2,21 @@ var webpack = require('webpack');
 
 module.exports = {
     context: __dirname + '/app/assets/javascripts',
-    entry: {components: './_components.js'},
+    entry: {
+        components: './_components.js'
+    },
     output: {
         filename: '[name].js',
         path: __dirname + '/app/assets/javascripts',
     },
-    devtool: 'source-map',
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loaders: [
+                    'babel-loader'
+                ]
             }
         ]
     },
@@ -22,9 +25,16 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
-            }
+            },
+            output: {
+                comments: false
+            },
+            sourceMap: false
         }),
-        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false,
+        }),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new webpack.DefinePlugin({
             'process.env': {

@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
-import PubSub from 'pubsub-js'
-import Immutable from 'immutable'
-
-import Twitter from '../services/twitter'
-import Player from '../services/player'
-import videoService from '../services/video_guess_service'
-import Controls from './controls.jsx'
-import NowPlaying from './now_playing.jsx'
-import History from './history.jsx'
+import React, {Component} from "react";
+import PubSub from "pubsub-js";
+import Immutable from "immutable";
+import Twitter from "../services/twitter";
+import Player from "../services/player";
+import videoService from "../services/video_guess_service";
+import Controls from "./controls.jsx";
+import NowPlaying from "./now_playing.jsx";
+import History from "./history.jsx";
 
 
 export default class PlayerPanel extends Component {

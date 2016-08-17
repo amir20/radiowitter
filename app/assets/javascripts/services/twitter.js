@@ -1,5 +1,4 @@
-import $ from 'jquery'
-import Immutable from 'immutable'
+import Immutable from "immutable";
 
 export default class Twitter {
     constructor(handle) {
@@ -15,7 +14,8 @@ export default class Twitter {
             this._tweets = this._tweets.pop();
             return Promise.resolve(this._mostRecent);
         } else {
-            return Promise.resolve($.get("/twitter/search.json", this._params()))
+            return fetch("/twitter/search.json?" + this._params())
+                .then(r => r.json())
                 .then(tweets => {
                         this._tweets = Immutable.List(tweets);
                         let nextTweet = this._tweets.last();
@@ -37,12 +37,12 @@ export default class Twitter {
             this._randomQueue = this._randomQueue.pop();
             return Promise.resolve(nextTweet);
         } else {
-            return Promise.resolve($.get("/twitter/search.json", {count: 50, screen_name: this._handle}))
+            return fetch(`/twitter/search.json?count=50&screen_name=${this._handle}`)
+                .then(r => r.json())
                 .then(tweets => {
-                        this._randomQueue = Immutable.List(Twitter.shuffleArray(tweets));
-                        return this.nextRandomTweet();
-                    }
-                );
+                    this._randomQueue = Immutable.List(Twitter.shuffleArray(tweets));
+                    return this.nextRandomTweet();
+                });
         }
     }
 
@@ -55,10 +55,9 @@ export default class Twitter {
     }
 
     _params() {
-        return this._mostRecent == null ? {count: 1, screen_name: this._handle} : {
-            since_id: this._mostRecent.id_str,
-            screen_name: this._handle
-        };
+        return this._mostRecent == null
+            ? `count=1&screen_name=${this._handle}`
+            : `since_id=${this._mostRecent.id_str}&screen_name=${this._handle}`;
     }
 
     static shuffleArray(array) {

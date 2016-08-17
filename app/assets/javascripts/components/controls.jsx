@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import PubSub from 'pubsub-js'
-import Modal from 'react-bootstrap/lib/Modal'
+import React, {Component} from "react";
+import PubSub from "pubsub-js";
+import Modal from "react-bootstrap/lib/Modal";
 
 const stations = [
     {
@@ -99,7 +99,7 @@ export default class Controls extends Component {
 
         return (
             <div className="title-bar">
-                <Modal show={this.state.showModal} onHide={() => this.setState({ showModal: false })}>
+                <Modal show={this.state.showModal} onHide={() => this.setState({showModal: false})}>
                     <Modal.Header closeButton>
                         <Modal.Title>Choose a Twitter Handle</Modal.Title>
                     </Modal.Header>

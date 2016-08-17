@@ -1,5 +1,3 @@
-import $ from 'jquery'
-
 export default class Youtube {
     constructor() {
     }
@@ -13,11 +11,8 @@ export default class Youtube {
 
         console.log(`Searching for video by text: [${query}].`);
 
-        return Promise.resolve($.get("/youtube/search.json", {
-                q: query,             
-                video_syndicated: true,
-                max_results: 5
-            }))
+        return fetch(`/youtube/search.json?q=${query}&video_syndicated=true&max_results=5`)
+            .then(r => r.json())
             .then(videos => {
                     let video = videos.find(v => v.duration > 180 && v.duration < 540);
                     return video || Promise.reject('No videos found');

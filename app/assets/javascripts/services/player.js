@@ -1,5 +1,5 @@
-import PubSub from 'pubsub-js'
-import youtube from 'youtube-iframe-player'
+import PubSub from "pubsub-js";
+import youtube from "youtube-iframe-player";
 
 export default  class Player {
     constructor() {

@@ -1,7 +1,6 @@
-import $ from 'jquery'
-import co from 'co'
-import Youtube from './youtube'
-import Scraper from './scraper'
+import co from "co";
+import Youtube from "./youtube";
+import Scraper from "./scraper";
 
 const youtube = new Youtube();
 const scraper = new Scraper();
