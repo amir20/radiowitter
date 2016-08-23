@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import PubSub from "pubsub-js";
+import {connect} from "react-redux";
 import Modal from "react-bootstrap/lib/Modal";
 
 const stations = [
@@ -43,41 +43,26 @@ const stations = [
 export default class Controls extends Component {
     constructor(props) {
         super(props);
-        this.state = {playing: false, showModal: false, selectedStation: {handle: 'music'}};
+        this.state = {showModal: false};
     }
 
-    componentDidMount() {
-        PubSub.subscribe('video.state', (msg, data) => {
-            this.setState({playing: data == 'PLAYING'});
-        });
-    }
 
     changeStation(station) {
-        this.setState({showModal: false, selectedStation: station});
-        this.props.onStationChange(station);
-        localStorage.selectedStation = station.handle;
+        this.setState({showModal: false});
+        this.props.actions.updateHandle(station.handle);
     }
 
     showStations() {
         this.setState({showModal: true});
     }
 
-    initStations() {
-        if (localStorage.selectedStation) {
-            let station = stations.find(station => station.handle == localStorage.selectedStation);
-            this.changeStation(station);
-        } else {
-            this.showStations();
-        }
-    }
-
-
     render() {
-        let mainButton = this.state.playing ?
+        const {playerStatus, nowPlaying} = this.props;
+        let mainButton = playerStatus == 'playing' ?
             <a className="glyphicon glyphicon-pause" onClick={() => this.props.player.pause()}> </a> :
             <a className="glyphicon glyphicon-play" onClick={() => this.props.player.unpause()}> </a>;
 
-        let buttons = this.props.loading ?
+        let buttons = playerStatus == 'loading' ?
             <div className="loader-inner ball-pulse">
                 <div></div>
                 <div></div>
@@ -88,7 +73,7 @@ export default class Controls extends Component {
                     {mainButton}
                 </li>
                 <li>
-                    <a className="glyphicon glyphicon-forward" onClick={this.props.onNext}> </a>
+                    <a className="glyphicon glyphicon-forward" onClick={() => this.props.actions.playNext()}> </a>
                 </li>
             </ul>;
 
@@ -130,7 +115,7 @@ export default class Controls extends Component {
                         <button className="change-station btn btn-sm btn-raised btn-primary"
                                 type="button"
                                 onClick={() => this.showStations()}>
-                            <span className="default">playing @{this.state.selectedStation.handle}</span>
+                            <span className="default">playing @{nowPlaying.handle}</span>
                             <span className="over">Change Station</span>
                         </button>
                     </div>
@@ -139,3 +124,5 @@ export default class Controls extends Component {
         )
     }
 }
+
+

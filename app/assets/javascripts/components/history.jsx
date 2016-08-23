@@ -7,7 +7,8 @@ export default class History extends Component {
     }
 
     render() {
-        if (this.props.list.isEmpty()) {
+        const {history} = this.props;
+        if (history.length === 0) {
             return (
                 <div className="history">
                     <h4>Play History</h4>
@@ -20,7 +21,7 @@ export default class History extends Component {
                 <h4>Play History</h4>
                 <ul className="list-unstyled">
                     {
-                        this.props.list.map(item => {
+                        history.map(item => {
                             return (
                                 <li className="media" key={item.tweet.id_str}>
                                     <div className="media-left">
@@ -42,3 +43,6 @@ export default class History extends Component {
         )
     }
 }
+
+
+
