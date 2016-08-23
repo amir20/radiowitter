@@ -13,8 +13,8 @@ class PlayerPanel extends Component {
     }
 
     componentDidMount() {
-        if (this.props.nowPlaying.handle !== undefined) {
-            this.props.actions.updateHandle(this.props.nowPlaying.handle);
+        if (localStorage.selectedHandle !== undefined) {
+            this.props.actions.updateHandle(localStorage.selectedHandle);
         } else {
             this.controls.showStations();
         }

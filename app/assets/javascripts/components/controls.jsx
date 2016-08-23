@@ -58,6 +58,7 @@ export default class Controls extends Component {
 
     render() {
         const {playerStatus, nowPlaying} = this.props;
+
         let mainButton = playerStatus == 'playing' ?
             <a className="glyphicon glyphicon-pause" onClick={() => this.props.player.pause()}> </a> :
             <a className="glyphicon glyphicon-play" onClick={() => this.props.player.unpause()}> </a>;

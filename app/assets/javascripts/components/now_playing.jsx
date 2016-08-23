@@ -9,7 +9,7 @@ export default class NowPlaying extends Component {
 
     render() {
         const { nowPlaying } = this.props;
-        if (nowPlaying.video) {
+        if (nowPlaying.video !== undefined) {
             return (
                 <div className="media now-playing">
                     <div className="media-body">

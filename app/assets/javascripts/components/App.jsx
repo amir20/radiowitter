@@ -7,14 +7,9 @@ import thunk from "redux-thunk";
 import PlayerPanel from "./player_panel.jsx";
 import reducer from "../reducers";
 
-let preloadedState = {};
-if (localStorage.selectedHandle !== undefined) {
-    preloadedState.nowPlaying = {handle: localStorage.selectedHandle};
-}
-
 
 const enhancers = compose(applyMiddleware(thunk, createLogger()), window.devToolsExtension ? window.devToolsExtension() : f => f);
-const store = createStore(reducer, preloadedState, enhancers);
+const store = createStore(reducer, enhancers);
 
 let currentHandle;
 store.subscribe(() => {
@@ -23,7 +18,6 @@ store.subscribe(() => {
     currentHandle = state.nowPlaying.handle;
 
     if (previousHandle !== currentHandle) {
-        console.log(`Saving [${currentHandle}] to localStorage...`);
         localStorage.selectedHandle = currentHandle;
     }
 });
