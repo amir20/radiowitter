@@ -1,27 +1,23 @@
-import Immutable from "immutable";
-
 export default class Twitter {
     constructor(handle) {
         this._mostRecent = null;
-        this._tweets = Immutable.List.of();
+        this._tweets = [];
         this._handle = handle;
-        this._randomQueue = Immutable.List.of();
+        this._randomQueue = [];
     }
 
     nextTweet() {
-        if (!this._tweets.isEmpty()) {
-            this._mostRecent = this._tweets.last();
-            this._tweets = this._tweets.pop();
+        if (this._tweets.length !== 0) {
+            this._mostRecent = this._tweets.shift();
             return Promise.resolve(this._mostRecent);
         } else {
             return fetch("/twitter/search.json?" + this._params())
                 .then(r => r.json())
                 .then(tweets => {
-                        this._tweets = Immutable.List(tweets);
-                        let nextTweet = this._tweets.last();
+                        this._tweets = tweets;
+                        let nextTweet = this._tweets.shift();
 
                         if (nextTweet !== undefined) {
-                            this._tweets = this._tweets.pop();
                             this._mostRecent = nextTweet;
                         }
 
@@ -32,26 +28,17 @@ export default class Twitter {
     }
 
     nextRandomTweet() {
-        if (!this._randomQueue.isEmpty()) {
-            let nextTweet = this._randomQueue.last();
-            this._randomQueue = this._randomQueue.pop();
+        if (this._randomQueue.length !== 0) {
+            let nextTweet = this._randomQueue.shift();
             return Promise.resolve(nextTweet);
         } else {
             return fetch(`/twitter/search.json?count=50&screen_name=${this._handle}`)
                 .then(r => r.json())
                 .then(tweets => {
-                    this._randomQueue = Immutable.List(Twitter.shuffleArray(tweets));
+                    this._randomQueue = Twitter.shuffleArray(tweets);
                     return this.nextRandomTweet();
                 });
         }
-    }
-
-    mostRecent() {
-        return this._mostRecent;
-    }
-
-    queuedTweets() {
-        return this._tweets;
     }
 
     _params() {

@@ -1,9 +1,10 @@
 import "babel-polyfill";
 import "whatwg-fetch";
-import PlayerPanel from "./components/player_panel.jsx";
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./components/App.jsx";
 
-window.PlayerPanel = PlayerPanel;
+
 window.React = React;
 window.ReactDOM = ReactDOM;
+window.App = App;

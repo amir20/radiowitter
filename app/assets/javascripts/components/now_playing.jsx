@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
 import TimeAgo from "./time_ago.jsx";
 
 export default class NowPlaying extends Component {
@@ -7,18 +8,19 @@ export default class NowPlaying extends Component {
     }
 
     render() {
-        if (this.props.data) {
+        const { nowPlaying } = this.props;
+        if (nowPlaying.video !== undefined) {
             return (
                 <div className="media now-playing">
                     <div className="media-body">
-                        <h5 className="media-heading">{this.props.data.video.title}</h5>
-                        {this.props.data.tweet.text}
+                        <h5 className="media-heading">{nowPlaying.video.title}</h5>
+                        {nowPlaying.tweet.text}
                         <div className="when">
-                            tweeted <TimeAgo date={new Date(this.props.data.tweet.created_at)}/>
+                            tweeted <TimeAgo date={new Date(nowPlaying.tweet.created_at)}/>
                         </div>
                     </div>
                     <div className="media-right">
-                        <img className="media-object thumbnail" src={this.props.data.video.thumbnail_url}/>
+                        <img className="media-object thumbnail" src={nowPlaying.video.thumbnail_url}/>
                     </div>
                 </div>);
         } else {
@@ -26,5 +28,6 @@ export default class NowPlaying extends Component {
         }
     }
 }
+
 
 
