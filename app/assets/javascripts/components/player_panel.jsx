@@ -7,7 +7,12 @@ import Player from "./Player.jsx";
 import History from "./history.jsx";
 import * as actions from "../actions";
 
-class PlayerPanel extends Component {
+
+@connect(
+    state => state,
+    dispatch => ({actions: bindActionCreators(actions, dispatch)})
+)
+export default class PlayerPanel extends Component {
     constructor(props) {
         super(props);
     }
@@ -42,10 +47,5 @@ class PlayerPanel extends Component {
         )
     }
 }
-
-export default connect(
-    state => state,
-    dispatch => ({actions: bindActionCreators(actions, dispatch)})
-)(PlayerPanel);
 
 

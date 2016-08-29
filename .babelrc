@@ -3,10 +3,10 @@
     "react",
     ["es2015", {"modules": false, "loose": true}]
   ],
-  "plugins": ["transform-object-rest-spread"],
+  "plugins": ["transform-object-rest-spread", "transform-decorators-legacy"],
   "env": {
     "test": {
-      "plugins": ["transform-object-rest-spread", "transform-es2015-modules-commonjs"]
+      "plugins": ["transform-object-rest-spread", "transform-es2015-modules-commonjs", "transform-decorators-legacy"]
     }
   }
 }
