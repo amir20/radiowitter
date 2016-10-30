@@ -1,4 +1,5 @@
-var webpack = require('webpack');
+const BabiliPlugin = require("babili-webpack-plugin");
+const webpack = require('webpack');
 
 module.exports = {
     context: __dirname + '/app/assets/javascripts',
@@ -22,15 +23,7 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            output: {
-                comments: false
-            },
-            sourceMap: false
-        }),
+        new BabiliPlugin(),
         new webpack.LoaderOptionsPlugin({
             minimize: true,
             debug: false,

@@ -37,5 +37,9 @@
     "testPathDirs": [
       "<rootDir>/app/assets/javascripts"
     ]
+  },
+  "devDependencies": {
+    "babel-preset-env": "^0.0.6",
+    "babili-webpack-plugin": "^0.0.6"
   }
 }
